@@ -1,14 +1,18 @@
 /* =======Solar Compass========= */
 $(document).ready(function(){
-console.log("runing out of reasons for this not to work"+' '+loadLanding());
-	
+	var init = function(){
+ 	        checkLoginState();
+ 	        console.log("hello init");
+    };
+	// console.log("runing out of reasons for this not to work"+' '+loadLanding());
 	function loadLanding(){
+		$('#wrap').empty();
 		$.get('templates/template.html',function(htmlArg){
 			var land = $(htmlArg).find('#landing-template').html();
 			$.template('landingtemplate', land);
-			var html= $.render('','landingtemplate');
-			// console.log(htmlArg);
-			$('#wrap').append(html);
+			var landhtml= $.render('','landingtemplate');
+			console.log("hello load land");
+			$('#wrap').append(landhtml);
 		});
 	};
 	function loadApp(){
@@ -16,30 +20,28 @@ console.log("runing out of reasons for this not to work"+' '+loadLanding());
 			var app = $(htmlArg).find('#app-template').html();
 			$.template('apptemplate', app);
 			var html= $.render('','apptemplate');
-			console.log(htmlArg);
+			console.log("load app");
 			$('#wrap').append(html);
 		});
 	};
 	var loadApp = function(){
-
-                container.empty();
-
-                $.get('templates/app.html', function(html){
-                        var appCode = $(html).find('#template_app').html();
-                        $.template('appHeader', appCode);                // compile template
-                        var appHeader = $.render('', 'appHeader');                // use template
-                        container.append(appHeader);
-
-                        //logout button
-                        $('#log-out').on('click', function(e){
-                                e.preventDefault();
-                                $.get('xhr/logout.php', function(){
-                                        loadLanding();
-                                });
-                        })
-                                return false;
+				console.log("hello load app function");
+                $('#wrap').empty();
+                $.get('templates/template.html',function(htmlArg){
+					var app = $(htmlArg).find('#app-template').html();
+					$.template('apptemplate', app);
+					var html= $.render('','apptemplate');
+					console.log("load app");
+					$('#wrap').append(html);
+                    //logout button
+                    $('#log-out').on('click', function(e){
+                            e.preventDefault();
+                            $.get('xhr/logout.php', function(){
+                                    loadLanding();
+                            });
+                    })
+                    return false;
                 });
-
                 $.get('templates/app.html', function(html){
                         var appCode = $(html).find('#app-temp').html();
                         $.template('appTemp', appCode);                // compile template
@@ -47,10 +49,10 @@ console.log("runing out of reasons for this not to work"+' '+loadLanding());
                         container.append(appTemp);
                         getProjects();
                 });
-        }
-
+    };
 	<!-- ===================================== login function =================================== -->
 	var checkLoginState = function(){
+		console.log("shit.... its loading this at least")
                 $.ajax({
                         url: 'xhr/check_login.php',
                         type: 'get',
@@ -58,18 +60,18 @@ console.log("runing out of reasons for this not to work"+' '+loadLanding());
                         success: function(response){
                                 // if user, loadApp()
                                 // if error, loadLanding()
-
                                 if(response.user){
-                                        loadApp();
-                                        console.log("cool");
+                                        // loadApp();
+                                        console.log("login to app");
                                 } else {
-                                        loadLanding();
-                                        console.log("wtf");
+                                        // loadLanding();
+                                                                                loadApp();
+
+                                        console.log("loadlanding log check state");
                                 }
                         }
                 });
         };
-
 	function login(){
 		var username=$('#username').val();
 		var pass =$('#password').val();
@@ -91,4 +93,5 @@ console.log("runing out of reasons for this not to work"+' '+loadLanding());
 			}
 		});
 	};
+	init();
 });
