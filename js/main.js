@@ -61,12 +61,10 @@ $(document).ready(function(){
                                 // if user, loadApp()
                                 // if error, loadLanding()
                                 if(response.user){
-                                        // loadApp();
+                                        loadApp();
                                         console.log("login to app");
                                 } else {
-                                        // loadLanding();
-                                                                                loadApp();
-
+                                        loadLanding();
                                         console.log("loadlanding log check state");
                                 }
                         }
