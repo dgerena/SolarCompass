@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/main.css">
+        <style>
+       		body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+
+    </head>
+    <body>
+    	<div id="wrap">
+    	</div>
+	<script src="js/vendor/jquery-1.10.1.js"></script>
+	<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+	<script src="js/vendor/jquery-ui-1.10.3.custom.js"></script>
+	<script src="js/vendor/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jsrender.min.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+		$(function() {		
+			$( ".accordion" ).accordion({collapsible: true});
+			$( "#button" ).button();
+			$( "#radioset" ).buttonset();
+			$( "#tabs" ).tabs();
+			$( "#dialog" ).dialog({
+				autoOpen: false,
+				width: 400,
+				buttons: [
+					{
+						text: "Ok",
+						click: function() {
+							$( this ).dialog( "close" );
+						}
+					},
+					{
+						text: "Cancel",
+						click: function() {
+							$( this ).dialog( "close" );
+						}
+					}
+				]
+			});
+			// Link to open the dialog
+			$( "#dialog-link" ).click(function( event ) {
+				$( "#dialog" ).dialog( "open" );
+				event.preventDefault();
+			});
+			$( "#datepicker" ).datepicker({
+				inline: true
+			});
+			$( "#slider" ).slider({
+				range: true,
+				values: [ 17, 67 ]
+			});
+			$( "#progressbar" ).progressbar({
+				value: 20
+			});
+			// Hover states on the static widgets
+			$( "#dialog-link, #icons li" ).hover(
+				function() {
+					$( this ).addClass( "ui-state-hover" );
+				},
+				function() {
+					$( this ).removeClass( "ui-state-hover" );
+				}
+			);
+			 $(function() {
+		    var icons = {
+		      header: "ui-icon-circle-arrow-e",
+		      activeHeader: "ui-icon-circle-arrow-s"
+		    };
+		    $( ".accordion" ).accordion({
+		      icons: icons
+		    });
+		    $( "#toggle" ).button().click(function() {
+		      if ( $( ".accordion" ).accordion( "option", "icons" ) ) {
+		        $( ".accordion" ).accordion( "option", "icons", null );
+		      } else {
+		        $( ".accordion" ).accordion( "option", "icons", icons );
+		      }
+		    });
+		  });
+		});
+	</script>    	
+    </body>
+</html>

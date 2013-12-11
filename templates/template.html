@@ -1,0 +1,155 @@
+<div>
+	<script type="text/template" id="landing-template">
+		 <div> <!-- wrappper div start -->
+		    <div class="navbar navbar-inverse navbar-fixed-top">
+		      <div class="container">
+		        <div class="navbar-header">
+		          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		          </button>
+		          <a class="navbar-brand" href="#">Solar Compass</a>
+		        </div>
+		        <div class="navbar-collapse collapse">
+		          <ul id="entry"class="nav navbar-nav">
+		            <li id="login"><a href="">Login</a></li>
+		            <li><a href="">Registration</a></li>
+		          </ul>
+		        </div><!--/.navbar-collapse -->
+		      </div>
+		    </div>
+		    <!-- Main jumbotron for a primary marketing message or call to action -->
+		    <div class="jumbotron">
+		      <div class="container">
+		        <h1>Finding your way in the dark is not easy.</h1>
+		        <p>As the work load in todays economy increases so does the burden on management. One of the biggest issues for larger management teams is keeping up with tasks and cutting out time wasting micromanagement. This is where Solar Compass can bring in the tools to organize finalize and follow up on business at hand.
+		        </p>
+		        <p><a class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+		      </div>
+		    </div>
+		    <div class="container">
+		      <!-- Example row of columns -->
+		      <div class="row">
+		        <div class="col-lg-4">
+		          <h2>First things First</h2>
+		          <p>This is a Project and task oriented management system. What it wont do is tell your teams to work. However with out reminder tools you will be able to have intermittent reminders sent to teams connected to tasks.</p>
+		          <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+		        </div>
+		        <div class="col-lg-4">
+		          <h2>Feedback</h2>
+		          <p>This is not a one way system you will also be able to receive messages form your teams and receive completion notices for your approval. </p>
+		          <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+		       </div>
+		        <div class="col-lg-4">
+		          <h2>Scheduling</h2>
+		          <p>Our system uses date oriented start and due dates to filter and bring the more relative projects to top of the list. We further detail this with status icons to give a visual imagery to important or behind schedule items.</p>
+		          <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+		        </div>
+		      </div>
+
+		      <hr> <!-- ================== line in between footer and body  ===========-------------->
+
+		      <footer>
+		        <p>&copy; DarkstarDesign &copy; 2013</p>
+		      </footer>
+		    </div> <!-- ending container wtih the 3 sections and footer -->
+		    <div class="reg-log">
+		    	<div class="login-form">
+		    		<form id="loginForm">
+		                <label>username:</label>
+		                <input autofocus="autofocus" id="username" type="text" name="user"/>
+		                <label>password:</label>
+		                <input id="password" type="password" name="pass"/>
+		                <button id="submit_login" class="sign">log in</button>
+		            </form>
+		    	</div>
+		    </div>        
+		 </div> <!-- wrapper end -->
+	</script> <!-- script wrap for templating -->
+	<script type="text/template" id="app-template">
+		<div class="navbar navbar-inverse navbar-fixed-top">
+	      <div class="container">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <a class="navbar-brand" href="#">Solar Compass</a>
+	        </div>
+	        <div class="navbar-collapse collapse">
+	          <ul id="entry"class="nav navbar-nav">
+	            <li id="login"><a href="">Logout</a></li>
+	            <li><a href="">Share</a></li>
+	          </ul>
+	        </div><!--/.navbar-collapse -->
+	      </div>
+	    </div><!-- header with logo and nav as well as logging and share -->
+	    <!-- Main jumbotron for a primary marketing message or call to action -->
+	    <div class="project-view ">
+	      <div class="container container-column">
+		      <div class="date-container">
+			      <div id="datepicker"></div>
+		      </div>
+		      <div class="project-short">
+		      	<div class="accordion">
+		      		<h3> date of project</h3>
+		      		<p> Project short descrip.</p>
+		      		<h3> date of project</h3>
+		      		<p> Project short descrip.</p>
+		      		<h3> date of project</h3>
+		      		<p> Project short descrip.</p>
+		      	</div>
+		      </div>
+	      </div>
+	      <div class="current-content">
+	      	<div class="data">
+		      	<h3>Date opened</h3>
+		      	<h3>Project Name</h3>
+		      	<h3>Date:Due/complete/exp</h3>
+		      	<h3>Tasks:open/closed</h3>
+	      	</div>
+	      	<div class="info">
+		      	<div class="description"
+		      	<p> this shall show the description of your currently selected project</p>
+			    </div>
+			    <div class="last task">
+			    	<p>This will detail the most recent open task or last completed task.</p>
+			    </div>
+			</div>
+	      </div>
+	    </div>
+	    <div class="container full-view">
+	    	<div class="accordion projects">
+	    		<h3>Section 1</h3>
+				<div>
+			    <p>Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.</p>
+				</div>
+				<h3>Section 2</h3>
+				<div>
+			    <p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna. </p>
+				</div>
+				<h3>Section 3</h3>
+				<div>
+			    <p>Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui. </p>
+			    <ul>
+			      <li>List item one</li>
+			      <li>List item two</li>
+			      <li>List item three</li>
+			    </ul>
+				</div>
+				<h3>Section 4</h3>
+				<div>
+			    <p>Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. </p><p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+			    </div>
+	    	</div>
+	    </div>
+	    <div class="container foot-container">
+	      <hr> <!-- ================== line in between footer and body  ===========-------------->
+	      <footer>
+	        <p>&copy; DarkstarDesign &copy; 2013</p>
+	      </footer>
+	    </div> <!-- /container  with footer -->
+	</script>
+</div>

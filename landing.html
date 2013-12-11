@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/main.css">
+		<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.js"><\/script>')</script>
+		<script src="js/vendor/jquery-1.10.1.js"></script>
+		<script src="js/vendor/jquery-ui-1.10.3.custom.js"></script>
+		<script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/main.js"></script>
+        <style>
+		            body {
+		                padding-top: 50px;
+		                padding-bottom: 20px;
+		            }
+		        </style>
+		        <script>
+				
+			$(function() {
+				
+				$( ".accordion" ).accordion({collapsible: true});
+				$( "#button" ).button();
+				$( "#radioset" ).buttonset();
+				$( "#tabs" ).tabs();
+				$( "#dialog" ).dialog({
+					autoOpen: false,
+					width: 400,
+					buttons: [
+						{
+							text: "Ok",
+							click: function() {
+								$( this ).dialog( "close" );
+							}
+						},
+						{
+							text: "Cancel",
+							click: function() {
+								$( this ).dialog( "close" );
+							}
+						}
+					]
+				});
+				// Link to open the dialog
+				$( "#dialog-link" ).click(function( event ) {
+					$( "#dialog" ).dialog( "open" );
+					event.preventDefault();
+				});
+				$( "#datepicker" ).datepicker({
+					inline: true
+				});
+				$( "#slider" ).slider({
+					range: true,
+					values: [ 17, 67 ]
+				});
+				$( "#progressbar" ).progressbar({
+					value: 20
+				});
+				// Hover states on the static widgets
+				$( "#dialog-link, #icons li" ).hover(
+					function() {
+						$( this ).addClass( "ui-state-hover" );
+					},
+					function() {
+						$( this ).removeClass( "ui-state-hover" );
+					}
+				);
+				 $(function() {
+    var icons = {
+      header: "ui-icon-circle-arrow-e",
+      activeHeader: "ui-icon-circle-arrow-s"
+    };
+    $( ".accordion" ).accordion({
+      icons: icons
+    });
+    $( "#toggle" ).button().click(function() {
+      if ( $( ".accordion" ).accordion( "option", "icons" ) ) {
+        $( ".accordion" ).accordion( "option", "icons", null );
+      } else {
+        $( ".accordion" ).accordion( "option", "icons", icons );
+      }
+    });
+  });
+			});
+		</script>    
+	</head>
+    <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Solar Compass</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul id="entry"class="nav navbar-nav">
+            <li id="login"><a href="">Login</a></li>
+            <li><a href="">Registration</a></li>
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Finding your way in the dark isn't easy.</h1>
+        <p>As the work load in todays economy increases so does the burden on management. One of the biggest issues for larger management teams is keeping up with tasks and cutting out time wasting micromanagement. This is where Solar Compass can bring in the tools to organize finalize and follow up on business at hand.
+        </p>
+        <p><a class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-lg-4">
+          <h2>First things First</h2>
+          <p>This is a Project and task oriented management system. What it wont do is tell your teams to work. However with out reminder tools you will be able to have intermittent reminders sent to teams connected to tasks.</p>
+          <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+        </div>
+        <div class="col-lg-4">
+          <h2>Feedback</h2>
+          <p>This isn't a one way system you will also be able to receive messages form your teams and receive completion notices for your approval. </p>
+          <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+       </div>
+        <div class="col-lg-4">
+          <h2>Scheduling</h2>
+          <p>Our system uses date oriented start and due dates to filter and bring the more relative projects to top of the list. We further detail this with status icons to give a visual imagery to important or behind schedule items.</p>
+          <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+        </div>
+      </div>
+
+      <hr> <!-- ================== line in between footer and body  ===========-------------->
+
+      <footer>
+        <p>&copy; DarkstarDesign &copy; 2013</p>
+      </footer>
+    </div> <!-- ending container wtih the 3 sections and footer -->
+    <div class="reg-log">
+    	<div class="login-form">
+    		<form name="login" action="index_submit" method="get" accept-charset="utf-8">  
+			    <ul>  
+			        <li><label for="usermail">Email</label>  
+			        <input type="email" name="usermail" placeholder="yourname@email.com" required></li>  
+			        <li><label for="password">Password</label>  
+			        <input type="password" name="password" placeholder="password" required></li>  
+			        <li>  
+			        <input type="submit" value="Login"></li>  
+			    </ul>  
+			</form>  
+    	</div>
+    </div>        
+    </body>
+</html>
