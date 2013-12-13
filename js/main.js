@@ -25,6 +25,10 @@ $(document).ready(function(){
             });
 		});
 	};
+<!-- ===================================== jquery functions =================================== -->
+	var jclass=function(){
+		$('#shortscript-Cont').addClass('accordion');
+	};
 	var jload=function(){
 		$(function() {		
 			$( ".accordion" ).accordion({collapsible: true});
@@ -90,7 +94,7 @@ $(document).ready(function(){
 		    });
 		  });
 		});
-	}
+	};
 	var loadApp = function(){
 		console.log("hello load app function");
         $('#wrap').empty();
@@ -106,9 +110,8 @@ $(document).ready(function(){
                 $.get('xhr/logout.php', function(){
                     loadLanding();
                 });
-            logout();
-
             });
+
             jload();
             return false;
             console.log("in the loadapp")
@@ -174,12 +177,11 @@ $(document).ready(function(){
 				}else{
 					loadApp();
 					console.log("in the login")
-					pget();
 				}
 			}
 		})
-	}
-	init();
+	};
+	<!-- ===================================== project function =================================== -->
 	function pget(){
 		console.log("this is in the pget function")
 		$.ajax({
@@ -193,10 +195,25 @@ $(document).ready(function(){
 				if(response.error){
 					console.log( "in the if of pget"+response);
 				}else{
-										console.log( "in the else of pget"+response);
-					console.log(response);
+					loadProject(response.projects);
+					jload();
 				}
 			}
 		});
-	}
+	};
+	function loadProject(prj){
+		$('#shortscript-Cont').empty();
+		$.get('templates/template.html',function(htmlArg){
+			var projct = $(htmlArg).find('#short-scriptTemp').html();
+			$.template('shortscripttemplate', projct);
+			var projcthtml = $.render(prj,'shortscripttemplate');
+			// console.log("hello load land");			
+			$('#shortscript-Cont').append(projcthtml);
+			jclass();
+
+
+		});
+	};
+	jload();
+	init();
 });
