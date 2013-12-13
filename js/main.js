@@ -18,7 +18,11 @@ $(document).ready(function(){
 			$('#submit_login').on('click', function(e) {
                 e.preventDefault();
                 login();
-            })
+            });
+            $('#submit_reg').on('click',function(e){
+            	e.preventDefault();
+            	reg();
+            });
 		});
 	};
 	var jload=function(){
@@ -107,6 +111,8 @@ $(document).ready(function(){
             });
             jload();
             return false;
+            console.log("in the loadapp")
+            pget();
         });
     };
 	<!-- ===================================== login function =================================== -->
@@ -118,6 +124,8 @@ $(document).ready(function(){
 			success: function(response){
 				if(response.user){
 					loadApp();
+					console.log("in the check_login")
+					pget();
 				}else{
 					loadLanding();
 				};
@@ -141,13 +149,39 @@ $(document).ready(function(){
 					showLoginError();
 				}else{
 					loadApp();
-
+					console.log("in the login")
+					pget();
 				}
 			}
 		});
 	};
+	function reg(){
+		var user=$('#userReg').val();
+		var pass=$('.passReg').val();
+		var email=$('.emailReg').val();
+		$.ajax({
+			url:'xhr/register.php',
+			data:{
+				username:user,
+				password:pass,
+				email:email
+			},
+			type: 'post',
+			dataType: 'json',
+			success: function(response){
+				if(response.error){
+					showLoginError();
+				}else{
+					loadApp();
+					console.log("in the login")
+					pget();
+				}
+			}
+		})
+	}
 	init();
 	function pget(){
+		console.log("this is in the pget function")
 		$.ajax({
 			url: 'xhr/get_projects.php',
 			data: {
@@ -157,11 +191,10 @@ $(document).ready(function(){
 			dataType: 'json',
 			success: function(response){
 				if(response.error){
-					console.log(response);
-					showLoginError();
+					console.log( "in the if of pget"+response);
 				}else{
+										console.log( "in the else of pget"+response);
 					console.log(response);
-					loadApp();
 				}
 			}
 		});
