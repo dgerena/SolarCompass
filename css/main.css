@@ -53,12 +53,13 @@ padding-top: 118px;
 /* content calander and  short view*/
 .container-column{
 	width: 20.27%;
-	margin: 0;
+	margin: 10px;
 	float: left;
 }
 .project-view{
 	background-color: #e8deb8;
 	float: left;
+	margin: 10px;
 	margin-top: 100px;
 	margin-left: 135px;
 	width: 85%;
@@ -72,7 +73,14 @@ padding-top: 118px;
 .ui-datepicker{
 	width: 100%;
 }
+.container{
+	padding-top: 10px;
+}
+.navbar-brand{
+	padding-top: 0; /* branding icon was getting out of line  */
+}
 .container-column {
+	margin: 10px;
 	background-color: #d1ccaa;
 }
 .project-short{
