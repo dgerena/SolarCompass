@@ -104,26 +104,11 @@
 			      <div id="datepicker"></div>
 		      </div>
 		      <div class="project-short">
-		      	<div  id="shortscript-Cont">
-		 
+		      	<div class="accordion"  id="shortscript-Cont">
 		      	</div>
 		      </div>
 	      </div>
-	      <div class="current-content">
-	      	<div class="data">
-		      	<h3>Date opened</h3>
-		      	<h3>Project Name</h3>
-		      	<h3>Date:Due/complete/exp</h3>
-		      	<h3>Tasks:open/closed</h3>
-	      	</div>
-	      	<div class="info">
-		      	<div class="description"
-		      	<p> this shall show the description of your currently selected project</p>
-			    </div>
-			    <div class="last task">
-			    	<p>This will detail the most recent open task or last completed task.</p>
-			    </div>
-			</div>
+	      <div class="current-content" id="current-select">
 	      </div>
 	    </div>
 	    <div class="container full-view">
@@ -161,7 +146,7 @@
 	<!-- ============================================= devider for template short script ===================== -->
 	<script type="text/template" id="short-scriptTemp">
   		<h3>{{=projectName}}</h3>
-		<p> {{=projectName}}</p>
+		<p> {{=status}}</p>
 	</script>
 	<!-- ============================================= devider for template long script ===================== -->
 	<script type="text/template" id="long-scriptTemp">
@@ -187,4 +172,21 @@
 		    <p>{{=projectDescription}}</p>
 		</div>
 	</script>
+<!-- ============================================= devider for template current content script ===================== -->
+	<script type="text/template" id="">
+	<div class="data">
+	  	<h3>Date opened</h3>
+	  	<h3>Project Name</h3>
+	  	<h3>Date:Due/complete/exp</h3>
+	  	<h3>Tasks:open/closed</h3>
+	</div>
+	<div class="info">
+	  	<div class="description"
+	  		<p> this shall show the description of your currently selected project</p>
+	    </div>
+	    <div class="last task">
+	    	<p>This will detail the most recent open task or last completed task.</p>
+	    </div>
+	</div>
+</script>
 </div>

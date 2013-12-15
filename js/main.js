@@ -202,7 +202,7 @@ $(document).ready(function(){
 		});
 	};
 	function loadProject(prj){
-		$('#shortscript-Cont').empty();
+		$('#shortscript-Cont, longscript-Cont').empty();
 		$.get('templates/template.html',function(htmlArg){
 			var projct = $(htmlArg).find('#short-scriptTemp').html();
 			$.template('shortscripttemplate', projct);
@@ -210,8 +210,14 @@ $(document).ready(function(){
 			// console.log("hello load land");			
 			$('#shortscript-Cont').append(projcthtml);
 			jclass();
-
-
+		});
+		$.get('templates/template.html',function(htmlArg){
+			var projct = $(htmlArg).find('#longscript-Cont').html();
+			$.template('longscripttemplate', projct);
+			var projcthtml = $.render(prj,'longscripttemplate');
+			// console.log("hello load land");			
+			$('#longscript-Cont').append(projcthtml);
+			jclass();
 		});
 	};
 	jload();
