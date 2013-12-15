@@ -212,11 +212,19 @@ $(document).ready(function(){
 			jclass();
 		});
 		$.get('templates/template.html',function(htmlArg){
-			var projct = $(htmlArg).find('#longscript-Cont').html();
+			var projct = $(htmlArg).find('#long-scriptTemp').html();
 			$.template('longscripttemplate', projct);
 			var projcthtml = $.render(prj,'longscripttemplate');
 			// console.log("hello load land");			
-			$('#longscript-Cont').append(projcthtml);
+			$('.longscript-Cont').append(projcthtml);
+			jclass();
+		});
+		$.get('templates/template.html',function(htmlArg){
+			var projct = $(htmlArg).find('#current').html();
+			$.template('currenttemplate', projct);
+			var projcthtml = $.render(prj,'currenttemplate');
+			// console.log("hello load land");			
+			$('.current-select').append(projcthtml);
 			jclass();
 		});
 	};
