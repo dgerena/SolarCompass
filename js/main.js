@@ -2,8 +2,8 @@
 
 $(document).ready(function(){
 	var init = function(){
- 	        checkLogin();
- 	        // console.log("hello init");
+ 	        checkLogin();  //starts to see if login and password were entered, even if its cached.
+ 	        console.log("hello init");
     };
 	// console.log("runing out of reasons for this not to work"+' '+loadLanding());
 	function loadLanding(){
@@ -12,26 +12,26 @@ $(document).ready(function(){
 			var land = $(htmlArg).find('#landing-template').html();
 			$.template('landingtemplate', land);
 			var landhtml = $.render('','landingtemplate');
-			// console.log("hello load land");			
-			$('#wrap').append(landhtml);
+			console.log("hello load land");			
+			$('#wrap').append(landhtml);// adds landing to html coantainer
 			jload();
 			$('#submit_login').on('click', function(e) {
                 e.preventDefault();
-                login();
+                login();// logs into application and ensure login
             });
             $('#submit_reg').on('click',function(e){
             	e.preventDefault();
-            	reg();
+            	reg();// adds new user to database if fields are filled correctly
             });
 		});
 	};
 <!-- ===================================== jquery functions =================================== -->
-	var jclass=function(){
+	var jclass=function(){// adds class to make jquery work. hasnt work yet.
 		$('#shortscript-Cont').addClass('accordion');
 	};
 	var jload=function(){
 		$(function() {		
-			$( ".accordion" ).accordion({collapsible: true});
+			$( ".accordion" ).accordion();
 			$( "#button" ).button();
 			$( "#radioset" ).buttonset();
 			$( "#tabs" ).tabs();
@@ -93,7 +93,7 @@ $(document).ready(function(){
 		      }
 		    });
 		  });
-		});
+		}); //loads jquery scripts
 	};
 	var loadApp = function(){
 		console.log("hello load app function");
@@ -103,19 +103,19 @@ $(document).ready(function(){
 			$.template('apptemplate', app);
 			var html= $.render('','apptemplate');
 			console.log("load app");
-			$('#wrap').append(html);
+			$('#wrap').append(html);// adds the template to the html container
             //logout button
-            $('#logout').on('click', function(e){
+            $('#logout').on('click', function(e){//activates a button for logging out.
                 e.preventDefault();
                 $.get('xhr/logout.php', function(){
-                    loadLanding();
+                    loadLanding();// after log out loads landing
                 });
             });
 
-            jload();
+            jload();// loads the jquery ui scripts
+            console.log("in the loadapp");
+            pget();// 
             return false;
-            console.log("in the loadapp")
-            pget();
         });
     };
 	<!-- ===================================== login function =================================== -->
@@ -126,16 +126,15 @@ $(document).ready(function(){
 			dataType: 'json',
 			success: function(response){
 				if(response.user){
-					loadApp();
+					loadApp();// if the login response is correct it loads this page
 					console.log("in the check_login")
-					pget();
 				}else{
-					loadLanding();
+					loadLanding();// if not returns the user to landing.
 				};
 			}
 		});
-	}
-	function login(){
+	};
+	function login(){// this is used when the button is submitted
 		console.log("login start");
 		var username=$('#username').val();
 		var pass =$('#password').val();
@@ -153,12 +152,12 @@ $(document).ready(function(){
 				}else{
 					loadApp();
 					console.log("in the login")
-					pget();
 				}
 			}
 		});
 	};
-	function reg(){
+	<!-- ==================== new user projects and tasks ======================== -->
+		function reg(){
 		var user=$('#userReg').val();
 		var pass=$('.passReg').val();
 		var email=$('.emailReg').val();
@@ -181,9 +180,30 @@ $(document).ready(function(){
 			}
 		})
 	};
+	function newp(){
+		var name=$('#pname').val();
+		var due=$('#pdue').val();
+		var desc=$('#pdesc').val();
+		var start=$('#pstart').val();
+		$.ajax({
+			url:'xhr/new_project.php',
+			data:{
+				username:user,
+				password:pass,
+				email:email
+			},
+			type: 'post',
+			dataType: 'json',
+			success: function(response){
+				if(response.newproject){
+
+				};
+			}
+		})
+	};
 	<!-- ===================================== project function =================================== -->
 	function pget(){
-		console.log("this is in the pget function")
+		console.log("pget call");
 		$.ajax({
 			url: 'xhr/get_projects.php',
 			data: {
@@ -195,19 +215,42 @@ $(document).ready(function(){
 				if(response.error){
 					console.log( "in the if of pget"+response);
 				}else{
+					console.log("here is the thing- "+response);
 					loadProject(response.projects);
 					jload();
-				}
+				};
 			}
 		});
 	};
+	function taskGet(){
+		console.log("task call");
+		$.ajax({
+			url: 'xhr/get_tasks.php',
+			data: {
+				projectID: "user"
+			},
+			type: 'post',
+			dataType: 'json',
+			success: function(response){
+				if(response.error){
+					console.log( "in the if of taskget"+response);
+				}else{
+					console.log("here is the task thing- "+response);
+					loadTasks(response.tasks);
+					jload();
+				};
+			}
+		});
+	};
+	<!-- =================================== proj template loads ================== -->
 	function loadProject(prj){
-		$('#shortscript-Cont, longscript-Cont').empty();
+		console.log("load prj");
+		$('#shortscript-Cont, #longscript-Cont,#current,#edit-template').empty();
 		$.get('templates/template.html',function(htmlArg){
-			var projct = $(htmlArg).find('#short-scriptTemp').html();
-			$.template('shortscripttemplate', projct);
+			var shortprojct = $(htmlArg).find('#short-scriptTemp').html();
+			$.template('shortscripttemplate', shortprojct);
 			var projcthtml = $.render(prj,'shortscripttemplate');
-			// console.log("hello load land");			
+			console.log("hello load short");			
 			$('#shortscript-Cont').append(projcthtml);
 			jclass();
 		});
@@ -215,7 +258,7 @@ $(document).ready(function(){
 			var projct = $(htmlArg).find('#long-scriptTemp').html();
 			$.template('longscripttemplate', projct);
 			var projcthtml = $.render(prj,'longscripttemplate');
-			// console.log("hello load land");			
+			console.log("hello load long");			
 			$('.longscript-Cont').append(projcthtml);
 			jclass();
 		});
@@ -223,10 +266,22 @@ $(document).ready(function(){
 			var projct = $(htmlArg).find('#current').html();
 			$.template('currenttemplate', projct);
 			var projcthtml = $.render(prj,'currenttemplate');
-			// console.log("hello load land");			
-			$('.current-select').append(projcthtml);
+			console.log("hello load current");			
+			$('#current-select').append(projcthtml);
 			jclass();
 		});
+		$.get('templates/template.html',function(htmlArg){
+			var projct = $(htmlArg).find('#edit-template').html();
+			$.template('edittemplate', projct);
+			var projcthtml = $.render(prj[0],'edittemplate');
+			console.log("projedts?"+prj);			
+			$('#edit').append(projcthtml);
+			jclass();
+		});
+	};
+	function loadTasks(prj){
+		console.log("task entry");
+
 	};
 	jload();
 	init();

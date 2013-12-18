@@ -3,6 +3,10 @@
 /* ==========================================================================
  								 landing
    ========================================================================== */
+   html{
+   	max-height: 1080px;
+   	overflow-y:scroll;
+   }
 /* ========================= nav ========================== */
 .navbar-brand{
 	text-indent: -1000px;
@@ -11,6 +15,7 @@
 	display: block;
 	height: 120px;
 	width: 200px;
+	margin-top: -10px;
 }
 .navbar-header{
 	height:100px;
@@ -80,7 +85,29 @@ padding-top: 118px;
 	padding-top: 10px;
 }
 .navbar-brand{
-	padding-top: 0; /* branding icon was getting out of line  */
+	 /* branding icon was getting out of line  */
+}
+#current-select{
+    width: 40%;
+    float: left;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fff;
+    height: 443px;
+}
+.info{
+	height:60px;
+	overflow-y: scroll;
+}
+#edit{
+    width: 36%;
+    float: left;
+    padding: 10px;
+    margin: 10px;
+}
+.data{
+	height: 57px;
+	overflow-y:scroll;
 }
 .container-column {
 	margin: 10px;
@@ -91,6 +118,11 @@ padding-top: 118px;
 	height:200px;
 	overflow-y: scroll;
 }
+.project-section{
+	background-color: #E8DEB8;
+	padding: 5px;
+	margin: 10px;
+}
 /* content full view */
 .full-view{
 	margin-left: 135px;
@@ -100,11 +132,19 @@ padding-top: 118px;
 .foot-container {
 	clear:both;
 }
-
-
-
-
-
-
-
-
+h3,.h3{
+	font-size: 16px;
+}
+#editAddproject-description{
+	height: 34%;
+	width: 100%;
+	word-wrap: normal|break-word;
+	background-color: white;
+	max-width: 100%;
+	min-width: 40%;
+	max-height: 15em;
+	min-height: 5em;
+}
+.info-task{
+	
+}

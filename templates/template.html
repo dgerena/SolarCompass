@@ -3,17 +3,12 @@
 		    <div class="navbar navbar-inverse navbar-fixed-top">
 		      <div class="container">
 		        <div class="navbar-header">
-		          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		          </button>
 		          <a class="navbar-brand" href="#">Solar Compass</a>
 		        </div>
 		        <div class="navbar-collapse collapse">
 		          <ul id="entry"class="nav navbar-nav">
-		            <li id="login"><a href="">Login</a></li>
-		            <li><a href="">Registration</a></li>
+		            <button id="login" class="btn"><a href="">Login</a></button>
+		            <button class="btn"><a href="">Registration</a></button>
 		          </ul>
 		        </div><!--/.navbar-collapse -->
 		      </div>
@@ -82,18 +77,13 @@
 		<div class="navbar navbar-inverse navbar-fixed-top">
 	      <div class="container">
 	        <div class="navbar-header">
-	          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	          </button>
 	          <a class="navbar-brand" href="#">Solar Compass</a>
 	        </div>
 	        <div class="navbar-collapse collapse">
-	          <ul id="entry"class="nav navbar-nav">
-	            <li id="logout"><a href="">Logout</a></li>
-	            <li><a href="">Share</a></li>
-	          </ul>
+	          <div id="entry"class="nav navbar-nav">
+	            <button id="logout" class="btn btn-success"><a href="">Logout</a></button>
+	            <button class="btn btn-success"><a href="">Share</a></button>
+	          </div>
 	        </div><!--/.navbar-collapse -->
 	      </div>
 	    </div><!-- header with logo and nav as well as logging and share -->
@@ -108,8 +98,12 @@
 		      	</div>
 		      </div>
 	      </div>
-	      <div class="current-content" id="current-select">
-	      </div>
+	      <div class="displayedit"
+		      <div class="current-content" id="current-select">
+		      </div>
+		      <div id="edit">
+		      </div>
+		  </div>
 	    </div>
 	    <div class="container full-view">
 	    	<div class="projects longscript-Cont">
@@ -124,48 +118,90 @@
 	</script>
 	<!-- ============================================= devider for template short script ===================== -->
 	<script type="text/template" id="short-scriptTemp">
-  		<h3>{{=projectName}}</h3>
+  		<h3 class="accordion">{{=projectName}}</h3>
 		<p> {{=status}}</p>
 	</script>
 	<!-- ============================================= devider for template long script ===================== -->
 	<script type="text/template" id="long-scriptTemp">
-		<h3>{{=projectName}}</h3>
-		<div>
-		    <p>{{=projectDescription}}</p>
-		</div>
-		<h3>{{=projectName}}</h3>
-		<div>
-		    <p>{{=projectDescription}}</p>
-		</div>
-		<h3>{{=projectName}}</h3>
-		<div>
-		    <p>{{=projectDescription}}</p>
-			<ul>
-		      <li>{{=clientID}}</li>
-		      <li>{{=clientName}}</li>
-		      <li>{{=primaryContactName}}</li>
-		    </ul>
-		</div>
-		<h3>{{=projectName}}</h3>
-		<div>
-		    <p>{{=projectDescription}}</p>
+		<div class="project-section">
+			<h3>{{=projectName}}</h3>
+			<div>
+			    <p>{{=projectDescription}}</p>
+			</div>
+			<h3>{{=projectName}}</h3>
+			<div>
+			    <p>{{=projectDescription}}</p>
+			</div>
+			<h3>{{=projectName}}</h3>
+			<div>
+			    <p>{{=projectDescription}}</p>
+				<ul>
+			      <li>{{=clientID}}</li>
+			      <li>{{=clientName}}</li>
+			      <li>{{=primaryContactName}}</li>
+			    </ul>
+			</div>
+			<h3>{{=projectName}}</h3>
+			<div>
+			    <p>{{=projectDescription}}</p>
+			</div>
 		</div>
 	</script>
 <!-- ============================================= devider for template current content script ===================== -->
 	<script type="text/template" id="current">
-	<div class="data">
-	  	<h3>Date opened</h3>
-	  	<h3>Project Name</h3>
-	  	<h3>Date:Due/complete/exp</h3>
-	  	<h3>Tasks:open/closed</h3>
-	</div>
-	<div class="info">
-	  	<div class="description"
-	  		<p> this shall show the description of your currently selected project</p>
-	    </div>
-	    <div class="last task">
-	    	<p>This will detail the most recent open task or last completed task.</p>
-	    </div>
-	</div>
-</script>
+		<div class="container">
+			<div class="data">
+			  	<h3>{{startDate}}</h3>
+			  	<h3>{{=projectName}}</h3>
+			  	<h3>{{dueDate}}</h3>
+			  	<h3>{{=status}}</h3>
+			</div>
+			<div class="info">
+			  	<div class="description"
+			  		<p>{{=projectDescription}}</p>
+			    </div>
+			    <div class="last task">
+			    	<p>This will detail the most recent open task or last completed task.</p>
+			    </div>
+			</div>
+		</div>
+	</script>
+	<script type="text/javascript" id="edit-template">
+		<div class="newdata">
+			<div class="container">
+				<h3>Project</h3>
+	            <button id="project-new" class="btn btn-success"><a href="">Save-New</a></button>   
+	            <button id="project-edit" class="btn btn-success"><a href="">Save-Edit</a></button>
+	            <button id="delete-project" class="btn btn-success"><a href="">Delete-Selected</a></button>
+			</div
+			<span><label>Start Date</label>
+		  	<input value="{{startDate}}" placeholder="No Start Date set."></input></span>
+		  	<span><label>Name</label>
+		  	<input id="editAddproject-name"value="{{=projectName}}" placeholder="Project Name"></input></span>
+		  	<span><label>Due Date</label>
+		  	<input value="{{dueDate}}" placeholder="No Due Date set."></input></span>
+		  	<span><label>Status</label>
+		  	<input id="editAddproject-status" value="{{=status}}" placeholder="Current Status"></input></span>
+			<textarea type="text" maxlength="500" id="editAddproject-description" placeholder="Current Project description."></textarea>
+		</div>
+		<div class="info-task">
+			<div class="newdata">
+				<div class="container">
+					<h3>Task</h3>
+		            <button id="project-new" class="btn btn-success"><a href="">Save-New</a></button>   
+		            <button id="project-edit" class="btn btn-success"><a href="">Save-Edit</a></button>
+		            <button id="delete-project" class="btn btn-success"><a href="">Delete-Selected</a></button>
+				</div
+				<span><label>Start Date</label>
+			  	<input value="{{startDate}}" placeholder="No Start Date set."></input></span>
+			  	<span><label>Name</label>
+			  	<input id="editAddproject-name"value="{{=projectName}}" placeholder="Project Name"></input></span>
+			  	<span><label>Due Date</label>
+			  	<input value="{{dueDate}}" placeholder="No Due Date set."></input></span>
+			  	<span><label>Status</label>
+			  	<input id="editAddproject-status" value="{{=status}}" placeholder="Current Status"></input></span>
+				<textarea type="text" maxlength="500" id="editAddproject-description" placeholder="Current Project description."></textarea>
+			</div>
+		</div>
+	</script>
 </div>
