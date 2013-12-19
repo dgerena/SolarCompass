@@ -8,7 +8,7 @@
 		        <div class="navbar-collapse collapse">
 		          <ul id="entry"class="nav navbar-nav">
 		            <button id="login" class="btn"><a href="">Login</a></button>
-		            <button class="btn"><a href="">Registration</a></button>
+		            <button id="register" class="btn"><a href="">Registration</a></button>
 		          </ul>
 		        </div><!--/.navbar-collapse -->
 		      </div>
@@ -46,31 +46,11 @@
 
 		      <footer>
 		        <p>&copy; DarkstarDesign &copy; 2013</p>
+		        <div id="view" class="visibility">
+
+		       	</div>
 		      </footer>
 		    </div> <!-- ending container wtih the 3 sections and footer -->
-		    <div class="reg-log">
-		    	<div class="login-form">
-		    		<form id="loginForm">
-		                <label>username:</label>
-		                <input autofocus="autofocus" id="username" type="text" name="user"/>
-		                <label>password:</label>
-		                <input id="password" type="password" name="pass"/>
-		                <button id="submit_login" class="sign">log in</button>
-		            </form>
-		    	</div>
-		    	<hr>
-		    	<div class="reg-form">
-		    		<form id="loginForm">
-		                <label>Username:</label>
-		                <input autofocus="autofocus" id="userReg" type="text" name="user"/>
-		                <label>Password:</label>
-		                <input class="passReg" type="password" name="pass"/>
-		                <label>Email:</label>
-		                <input class="emailReg" type="Email" name="email"/>
-		                <button id="submit_reg" class="sign">log in</button>
-		            </form>
-		    	</div>
-		    </div>        
 	</script> <!-- script wrap for templating -->
 	<!-- ============================================= devider for template ===================== -->
 	<script type="text/template" id="app-template">
@@ -81,8 +61,8 @@
 	        </div>
 	        <div class="navbar-collapse collapse">
 	          <div id="entry"class="nav navbar-nav">
-	            <button id="logout" class="btn btn-success"><a href="">Logout</a></button>
-	            <button class="btn btn-success"><a href="">Share</a></button>
+	            <button id="logout" class="btn"><a href="">Logout</a></button>
+	            <button class="btn"><a href="">Share</a></button>
 	          </div>
 	        </div><!--/.navbar-collapse -->
 	      </div>
@@ -115,6 +95,8 @@
 	        <p>&copy; DarkstarDesign &copy; 2013</p>
 	      </footer>
 	    </div> <!-- /container  with footer -->
+	    <div id="entry-holder" class="ui-corner-top ui-corner-bottom">
+	    </div>
 	</script>
 	<!-- ============================================= devider for template short script ===================== -->
 	<script type="text/template" id="short-scriptTemp">
@@ -127,6 +109,8 @@
 			<h3>{{=projectName}}</h3>
 			<div>
 			    <p>{{=projectDescription}}</p>
+			    <h4>{{=taskName}}</h4>
+			    <p>{{=taskDescrioption}}</p>
 			</div>
 			<h3>{{=projectName}}</h3>
 			<div>
@@ -149,20 +133,18 @@
 	</script>
 <!-- ============================================= devider for template current content script ===================== -->
 	<script type="text/template" id="current">
-		<div class="container">
+		<div class="container" id="{{=id}}">
 			<div class="data">
-			  	<h3>{{startDate}}</h3>
+			  	<h3>{{=startDate}}</h3>
 			  	<h3>{{=projectName}}</h3>
-			  	<h3>{{dueDate}}</h3>
+			  	<h3>{{=dueDate}}</h3>
 			  	<h3>{{=status}}</h3>
 			</div>
 			<div class="info">
 			  	<div class="description"
 			  		<p>{{=projectDescription}}</p>
 			    </div>
-			    <div class="last task">
-			    	<p>This will detail the most recent open task or last completed task.</p>
-			    </div>
+			    <button id="{{=id}}" class="taskbtn btn-default">Tasks</button>
 			</div>
 		</div>
 	</script>
@@ -170,38 +152,110 @@
 		<div class="newdata">
 			<div class="container">
 				<h3>Project</h3>
-	            <button id="project-new" class="btn btn-success"><a href="">Save-New</a></button>   
-	            <button id="project-edit" class="btn btn-success"><a href="">Save-Edit</a></button>
-	            <button id="delete-project" class="btn btn-success"><a href="">Delete-Selected</a></button>
+	            <button id="project-new" class="btn"><a href="">Save-New</a></button>   
+	            <button id="project-edit" class="btn"><a href="">Save-Edit</a></button>
+	            <button id="delete-project" class="btn"><a href="">Delete-Selected</a></button>
 			</div
 			<span><label>Start Date</label>
-		  	<input value="{{startDate}}" placeholder="No Start Date set."></input></span>
+		  	<input value="{{=startDate}}" placeholder="No Start Date set."></input></span>
 		  	<span><label>Name</label>
 		  	<input id="editAddproject-name"value="{{=projectName}}" placeholder="Project Name"></input></span>
 		  	<span><label>Due Date</label>
-		  	<input value="{{dueDate}}" placeholder="No Due Date set."></input></span>
+		  	<input value="{{=dueDate}}" placeholder="No Due Date set."></input></span>
 		  	<span><label>Status</label>
 		  	<input id="editAddproject-status" value="{{=status}}" placeholder="Current Status"></input></span>
 			<textarea type="text" maxlength="500" id="editAddproject-description" placeholder="Current Project description."></textarea>
 		</div>
-		<div class="info-task">
-			<div class="newdata">
-				<div class="container">
-					<h3>Task</h3>
-		            <button id="project-new" class="btn btn-success"><a href="">Save-New</a></button>   
-		            <button id="project-edit" class="btn btn-success"><a href="">Save-Edit</a></button>
-		            <button id="delete-project" class="btn btn-success"><a href="">Delete-Selected</a></button>
-				</div
-				<span><label>Start Date</label>
-			  	<input value="{{startDate}}" placeholder="No Start Date set."></input></span>
-			  	<span><label>Name</label>
-			  	<input id="editAddproject-name"value="{{=projectName}}" placeholder="Project Name"></input></span>
-			  	<span><label>Due Date</label>
-			  	<input value="{{dueDate}}" placeholder="No Due Date set."></input></span>
-			  	<span><label>Status</label>
-			  	<input id="editAddproject-status" value="{{=status}}" placeholder="Current Status"></input></span>
-				<textarea type="text" maxlength="500" id="editAddproject-description" placeholder="Current Project description."></textarea>
-			</div>
+	</script>
+	<script type="text/javascript" id="edittask-template">
+		<div class="newdata">
+			<div class="container">
+				<h3>Project</h3>
+	            <button id="task-new" class="btn"><a href="">Save-New</a></button>   
+	            <button id="task-edit" class="btn"><a href="">Save-Edit</a></button>
+	            <button id="delete-task" class="btn"><a href="">Delete-Selected</a></button>
+			</div
+			<span><label>Start Date</label>
+		  	<input value="{{=startDate}}" placeholder="No Start Date set."></input></span>
+		  	<span><label>Name</label>
+		  	<input id="editAddproject-name"value="{{=taskName}}" placeholder="Project Name"></input></span>
+		  	<span><label>Due Date</label>
+		  	<input value="{{=dueDate}}" placeholder="No Due Date set."></input></span>
+		  	<span><label>Status</label>
+		  	<input id="editAddproject-status" value="{{=status}}" placeholder="Current Status"></input></span>
+			<textarea type="text" maxlength="500" id="editAddproject-description" placeholder="Current Project description."></textarea>
 		</div>
 	</script>
+	<script type="text/template" id="task-edit-template">
+		<div class="taskholder">
+    		<p class="taskName">{{=taskName}}</p>
+    	<div
+	</script>
+	<script type="text/template" id="entry-form">
+	    	<div class="login-form ui-corner-top ui-corner-bottom">
+	    		<form class="loginForm">
+	                <label>username:</label>
+	                <input autofocus="autofocus" id="username" type="text" name="user"/>
+	                <label>password:</label>
+	                <input id="password"  type="password" name="pass"/>
+	                <button id="submit_login" class="btn sign">log in</button>
+	            </form>
+	            <hr>
+	    		<form class="loginForm">
+	                <label>Username:</label>
+	                <input autofocus="autofocus" id="userReg" class="form-control" type="text" name="user"/>
+	                <label>Password:</label>
+	                <input class="passReg form-control" type="password" name="pass"/>
+	                <label>Email:</label>
+	                <input class="emailReg form-control" type="Email" name="email"/>
+	                <button id="submit_reg" class="btn sign">log in</button>
+	            </form>
+	    	</div>
+   </script>
+    <script type="text/template" id="task-template">
+    	<div class="navbar navbar-inverse navbar-fixed-top">
+	      <div class="container">
+	        <div class="navbar-header">
+	          <a class="navbar-brand" href="#">Solar Compass</a>
+	        </div>
+	        <div class="navbar-collapse collapse">
+	          <div id="entry"class="nav navbar-nav">
+	            <button id="logout" class="btn"><a href="">Logout</a></button>
+	            <button class="btn"><a href="">Share</a></button>
+	          </div>
+	        </div><!--/.navbar-collapse -->
+	      </div>
+	    </div><!-- header with logo and nav as well as logging and share -->
+	    <!-- Main jumbotron for a primary marketing message or call to action -->
+	    <div class="container full-view">
+	    	<div class="tasks longscript-Cont">
+	            <button class="btn ptasks"><a href="">Back</a></button>	
+	    	</div>
+	    	<div>
+		    	<div class="newdata">
+				<div class="container">
+					<h3>Tasks</h3>
+		            <button id="task-new" class="btn"><a href="">Save-New</a></button>   
+		            <button id="task-edit" class="btn"><a href="">Save-Edit</a></button>
+		            <button id="delete-task" class="btn"><a href="">Delete-Selected</a></button>
+				</div
+				<span><label>Start Date</label>
+			  	<input value="{{=startDate}}" placeholder="No Start Date set."></input></span>
+			  	<span><label>Name</label>
+			  	<input id="editAddproject-name"value="{{=taskName}}" placeholder="Task Name"></input></span>
+			  	<span><label>Due Date</label>
+			  	<input value="{{=dueDate}}" placeholder="No Due Date set."></input></span>
+			  	<span><label>Status</label>
+			  	<input id="editAddproject-status" value="{{=status}}" placeholder="Current Status"></input></span>
+				<textarea type="text" maxlength="500" id="editAddproject-description" placeholder="Current Task description."></textarea>
+				</div><!-- end of edit area -->
+		</div>
+	    </div>
+	    <div class="container foot-container">
+	      <hr> <!-- ================== line in between footer and body  ===========-------------->
+	      <footer>
+	        <p>&copy; DarkstarDesign &copy; 2013</p>
+	      </footer>
+	    </div> <!-- /container  with footer -->
+    </script>
 </div>

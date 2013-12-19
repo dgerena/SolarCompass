@@ -42,7 +42,7 @@ padding-top: 118px;
 	float:right;
 }
 .login-form{
-	width: 200px;
+	width: 20%;
 	background-color: green;
 }
 .login-form li{
@@ -51,9 +51,18 @@ padding-top: 118px;
 .login-form  label{
 	text-align: right;
 }
-/*.reg-log{
-	display: none;
-*/
+.form-control{
+	text-align:left;
+/*	float: left;
+*/}
+. login-form .btn{
+/*float: right;
+*/clear:both;
+}
+.ptasks{
+	margin-top: 100px;
+}
+
 
 /* ==========================================================================
  								 applic
@@ -146,5 +155,8 @@ h3,.h3{
 	min-height: 5em;
 }
 .info-task{
-	
+
+}
+.visibility{
+	background-color: green;
 }

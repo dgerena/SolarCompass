@@ -15,14 +15,8 @@ $(document).ready(function(){
 			console.log("hello load land");			
 			$('#wrap').append(landhtml);// adds landing to html coantainer
 			jload();
-			$('#submit_login').on('click', function(e) {
-                e.preventDefault();
-                login();// logs into application and ensure login
-            });
-            $('#submit_reg').on('click',function(e){
-            	e.preventDefault();
-            	reg();// adds new user to database if fields are filled correctly
-            });
+			entrybtns();
+			
 		});
 	};
 <!-- ===================================== jquery functions =================================== -->
@@ -111,14 +105,23 @@ $(document).ready(function(){
                     loadLanding();// after log out loads landing
                 });
             });
-
             jload();// loads the jquery ui scripts
             console.log("in the loadapp");
             pget();// 
-            return false;
         });
     };
+    var loadTaskApp = function(pid){
+		console.log("hello load app function");
+		taskGet(pid);
+    };
 	<!-- ===================================== login function =================================== -->
+	var entrybtns=function(){
+		$('#login, #register').on('click', function(e){//activates a button for logging out.
+            e.preventDefault();
+        	loadForm();
+
+		});
+	};
 	var checkLogin = function(){
 		$.ajax({
 			url:'xhr/check_login.php',
@@ -126,12 +129,14 @@ $(document).ready(function(){
 			dataType: 'json',
 			success: function(response){
 				if(response.user){
+					console.log("in the check_login");
 					loadApp();// if the login response is correct it loads this page
-					console.log("in the check_login")
 				}else{
+										console.log("in the check_login else"+response);
+
 					loadLanding();// if not returns the user to landing.
 				};
-			}
+			}//end of object;
 		});
 	};
 	function login(){// this is used when the button is submitted
@@ -151,8 +156,8 @@ $(document).ready(function(){
 					showLoginError();
 				}else{
 					loadApp();
-					console.log("in the login")
-				}
+					console.log("in the login");
+				};
 			}
 		});
 	};
@@ -176,8 +181,8 @@ $(document).ready(function(){
 				}else{
 					loadApp();
 					console.log("in the login")
-				}
-			}
+				};
+			}//end of object;
 		})
 	};
 	function newp(){
@@ -198,7 +203,7 @@ $(document).ready(function(){
 				if(response.newproject){
 
 				};
-			}
+			}// end of object so no ;
 		})
 	};
 	<!-- ===================================== project function =================================== -->
@@ -213,21 +218,28 @@ $(document).ready(function(){
 			dataType: 'json',
 			success: function(response){
 				if(response.error){
-					console.log( "in the if of pget"+response);
+					// console.log( "in the if of pget"+response);
 				}else{
-					console.log("here is the thing- "+response);
+					console.log("here is the thing- "+response.projects.id);
 					loadProject(response.projects);
 					jload();
 				};
 			}
 		});
 	};
-	function taskGet(){
+	// var idcount
+	// var resLoop =function({
+	// 	for(var i = 0; i < response.projects.length-1; i++ ){
+	// 		return i;
+	// 	};
+	// });
+
+	function taskGet(pid){
 		console.log("task call");
 		$.ajax({
 			url: 'xhr/get_tasks.php',
 			data: {
-				projectID: "user"
+				projectID: pid
 			},
 			type: 'post',
 			dataType: 'json',
@@ -235,11 +247,30 @@ $(document).ready(function(){
 				if(response.error){
 					console.log( "in the if of taskget"+response);
 				}else{
-					console.log("here is the task thing- "+response);
-					loadTasks(response.tasks);
+					console.log("here is the taskget- "+response);
+					$('#wrap').empty();
+			        $.get('templates/template.html',function(htmlArg){
+						var app = $(htmlArg).find('#task-template').html();
+						$.template('tasktemplate', app);
+						var html= $.render(response.tasks,'tasktemplate');
+						console.log("load tasktemp");
+						$('#wrap').append(html);// adds the template to the html container
+			            //logout button
+			            $('#logout').on('click', function(e){//activates a button for logging out.
+			                e.preventDefault();
+			                $.get('xhr/logout.php', function(){
+			                    loadLanding();// after log out loads landing
+			                });
+			            });
+			            $('.ptasks').on('click',function(e){
+			            	loadApp();
+			            });
+			            jload();// loads the jquery ui scripts
+			            return false;
+			        });
 					jload();
 				};
-			}
+			}// end of object so no ;
 		});
 	};
 	<!-- =================================== proj template loads ================== -->
@@ -250,7 +281,7 @@ $(document).ready(function(){
 			var shortprojct = $(htmlArg).find('#short-scriptTemp').html();
 			$.template('shortscripttemplate', shortprojct);
 			var projcthtml = $.render(prj,'shortscripttemplate');
-			console.log("hello load short");			
+			// console.log("hello load short");			
 			$('#shortscript-Cont').append(projcthtml);
 			jclass();
 		});
@@ -258,7 +289,7 @@ $(document).ready(function(){
 			var projct = $(htmlArg).find('#long-scriptTemp').html();
 			$.template('longscripttemplate', projct);
 			var projcthtml = $.render(prj,'longscripttemplate');
-			console.log("hello load long");			
+			// console.log("hello load long");			
 			$('.longscript-Cont').append(projcthtml);
 			jclass();
 		});
@@ -266,22 +297,60 @@ $(document).ready(function(){
 			var projct = $(htmlArg).find('#current').html();
 			$.template('currenttemplate', projct);
 			var projcthtml = $.render(prj,'currenttemplate');
-			console.log("hello load current");			
+			// console.log("hello load current");			
 			$('#current-select').append(projcthtml);
+			$('.taskbtn').on('click', function(e){//activates a button for logging out.
+            	console.log('click');
+                $('#wrap').empty();
+            	e.preventDefault();
+            	var pid=$(this).attr('id');// p[asss this number into ajax to confimr what app the task belongs too.
+            								// i will need to use .atr(id)
+            	loadTaskApp(pid);
+            	console.log("pid"+pid);
+            });
+
+            return false;
 			jclass();
 		});
 		$.get('templates/template.html',function(htmlArg){
 			var projct = $(htmlArg).find('#edit-template').html();
 			$.template('edittemplate', projct);
 			var projcthtml = $.render(prj[0],'edittemplate');
-			console.log("projedts?"+prj);			
+			console.log("projects?"+prj[0].val);			
 			$('#edit').append(projcthtml);
 			jclass();
 		});
 	};
-	function loadTasks(prj){
-		console.log("task entry");
+	function loadForm(){
+		$.get('templates/template.html',function(htmlArg){
+				var entry = $(htmlArg).find('#entry-form').html();
+				$.template('entrytemplate', entry);
+				var html= $.render('','entrytemplate');
+				$('#view').append(html);
+				$('#submit_login').on('click', function(e) {
+				console.log("halp");
+                e.preventDefault();
+                login();// logs into application and ensure login
+            });
+            $('#submit_reg').on('click',function(e){
+            	e.preventDefault();
+            	reg();// adds new user to database if fields are filled correctly
+            });
+        	});
+	};
 
+	function loadTasks(response){
+		console.log("task entry");
+		$('.last-task').empty();
+		$.get('templates/template.html',function(htmlArg){
+			var taskprjct = $(htmlArg).find('#task-edit-template').html();
+			$.template('tasktemp', taskprjct);
+			var taskhtml = $.render(response,'tasktemp');
+			console.log("hello load short");//if($('#last-task')!= ""){}		
+
+			$('#last-task').append(taskhtml);
+			jclass();
+		});
 	};
 	jload();
 	init();
