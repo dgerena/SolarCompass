@@ -133,7 +133,7 @@
 	</script>
 <!-- ============================================= devider for template current content script ===================== -->
 	<script type="text/template" id="current">
-		<div class="container" id="{{=id}}">
+		<div class="project container" id="{{=id}}">
 			<div class="data">
 			  	<h3>{{=startDate}}</h3>
 			  	<h3>{{=projectName}}</h3>
@@ -157,11 +157,11 @@
 	            <button id="delete-project" class="btn"><a href="">Delete-Selected</a></button>
 			</div
 			<span><label>Start Date</label>
-		  	<input value="{{=startDate}}" placeholder="No Start Date set."></input></span>
+		  	<input id="editAddStart"value="{{=startDate}}" placeholder="No Start Date set."></input></span>
 		  	<span><label>Name</label>
 		  	<input id="editAddproject-name"value="{{=projectName}}" placeholder="Project Name"></input></span>
 		  	<span><label>Due Date</label>
-		  	<input value="{{=dueDate}}" placeholder="No Due Date set."></input></span>
+		  	<input id="editAddDue" value="{{=dueDate}}" placeholder="No Due Date set."></input></span>
 		  	<span><label>Status</label>
 		  	<input id="editAddproject-status" value="{{=status}}" placeholder="Current Status"></input></span>
 			<textarea type="text" maxlength="500" id="editAddproject-description" placeholder="Current Project description."></textarea>
@@ -176,13 +176,13 @@
 	            <button id="delete-task" class="btn"><a href="">Delete-Selected</a></button>
 			</div
 			<span><label>Start Date</label>
-		  	<input value="{{=startDate}}" placeholder="No Start Date set."></input></span>
+		  	<input placeholder="{{=startDate}}" ></input></span>
 		  	<span><label>Name</label>
-		  	<input id="editAddproject-name"value="{{=taskName}}" placeholder="Project Name"></input></span>
+		  	<input id="editAddproject-name"placeholder="{{=taskName}}" ></input></span>
 		  	<span><label>Due Date</label>
-		  	<input value="{{=dueDate}}" placeholder="No Due Date set."></input></span>
+		  	<input placeholder="{{=dueDate}}" ></input></span>
 		  	<span><label>Status</label>
-		  	<input id="editAddproject-status" value="{{=status}}" placeholder="Current Status"></input></span>
+		  	<input id="editAddproject-status" placeholder="{{=status}}" ></input></span>
 			<textarea type="text" maxlength="500" id="editAddproject-description" placeholder="Current Project description."></textarea>
 		</div>
 	</script>
@@ -235,19 +235,19 @@
 		    	<div class="newdata">
 				<div class="container">
 					<h3>Tasks</h3>
-		            <button id="task-new" class="btn"><a href="">Save-New</a></button>   
+		            <button class="btn task-new" class="btn"><a href="">Save-New</a></button>   
 		            <button id="task-edit" class="btn"><a href="">Save-Edit</a></button>
 		            <button id="delete-task" class="btn"><a href="">Delete-Selected</a></button>
 				</div
 				<span><label>Start Date</label>
-			  	<input value="{{=startDate}}" placeholder="No Start Date set."></input></span>
+			  	<input id="taskStartDate" placeholder="{{=startDate}}" ></input></span>
 			  	<span><label>Name</label>
-			  	<input id="editAddproject-name"value="{{=taskName}}" placeholder="Task Name"></input></span>
+			  	<input id="editAddtask-name"placeholder="{{=taskName}}" ></input></span>
 			  	<span><label>Due Date</label>
-			  	<input value="{{=dueDate}}" placeholder="No Due Date set."></input></span>
+			  	<input id="taskDueDate" placeholder="{{=dueDate}}" ></input></span>
 			  	<span><label>Status</label>
-			  	<input id="editAddproject-status" value="{{=status}}" placeholder="Current Status"></input></span>
-				<textarea type="text" maxlength="500" id="editAddproject-description" placeholder="Current Task description."></textarea>
+			  	<input id="editAddtask-status" placeholder="{{=status}}" ></input></span>
+				<textarea type="text" maxlength="500" id="editAddtask-description" placeholder="Current Task description."></textarea>
 				</div><!-- end of edit area -->
 		</div>
 	    </div>
@@ -258,4 +258,23 @@
 	      </footer>
 	    </div> <!-- /container  with footer -->
     </script>
+    <script type="text/javascript" id="edit-click-template">
+		<div class="{{=projectID}}"class="newdata">
+			<div class="container">
+				<h3>Project</h3>
+	            <button id="project-new" class="btn"><a href="">Save-New</a></button>   
+	            <button id="project-edit" class="btn"><a href="">Save-Edit</a></button>
+	            <button id="delete-project" class="btn"><a href="">Delete-Selected</a></button>
+			</div
+			<span><label>Start Date</label>
+		  	<input id="editAddStart"value="{{=startDate}}" placeholder="No Start Date set."></input></span>
+		  	<span><label>Name</label>
+		  	<input id="editAddproject-name"value="{{=projectName}}" placeholder="Project Name"></input></span>
+		  	<span><label>Due Date</label>
+		  	<input id="editAddDue" value="{{=dueDate}}" placeholder="No Due Date set."></input></span>
+		  	<span><label>Status</label>
+		  	<input id="editAddproject-status" value="{{=status}}" placeholder="Current Status"></input></span>
+			<textarea type="text" maxlength="500" id="editAddproject-description" placeholder="Current Project description."></textarea>
+		</div>
+	</script>
 </div>

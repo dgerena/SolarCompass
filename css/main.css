@@ -62,7 +62,13 @@ padding-top: 118px;
 .ptasks{
 	margin-top: 100px;
 }
-
+#current-select{
+	overflow-y:scroll;
+}
+.project{
+	background-color: gray;
+	margin:5px;
+}
 
 /* ==========================================================================
  								 applic

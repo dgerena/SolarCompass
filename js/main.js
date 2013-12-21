@@ -3,7 +3,7 @@
 $(document).ready(function(){
 	var init = function(){
  	        checkLogin();  //starts to see if login and password were entered, even if its cached.
- 	        console.log("hello init");
+ 	        // console.log("hello init");
     };
 	// console.log("runing out of reasons for this not to work"+' '+loadLanding());
 	function loadLanding(){
@@ -12,7 +12,7 @@ $(document).ready(function(){
 			var land = $(htmlArg).find('#landing-template').html();
 			$.template('landingtemplate', land);
 			var landhtml = $.render('','landingtemplate');
-			console.log("hello load land");			
+			// console.log("hello load land");			
 			$('#wrap').append(landhtml);// adds landing to html coantainer
 			jload();
 			entrybtns();
@@ -90,13 +90,13 @@ $(document).ready(function(){
 		}); //loads jquery scripts
 	};
 	var loadApp = function(){
-		console.log("hello load app function");
+		// console.log("hello load app function");
         $('#wrap').empty();
         $.get('templates/template.html',function(htmlArg){
 			var app = $(htmlArg).find('#app-template').html();
 			$.template('apptemplate', app);
 			var html= $.render('','apptemplate');
-			console.log("load app");
+			// console.log("load app");
 			$('#wrap').append(html);// adds the template to the html container
             //logout button
             $('#logout').on('click', function(e){//activates a button for logging out.
@@ -106,12 +106,12 @@ $(document).ready(function(){
                 });
             });
             jload();// loads the jquery ui scripts
-            console.log("in the loadapp");
+            // console.log("in the loadapp");
             pget();// 
         });
     };
     var loadTaskApp = function(pid){
-		console.log("hello load app function");
+		// console.log("hello load app function");
 		taskGet(pid);
     };
 	<!-- ===================================== login function =================================== -->
@@ -119,7 +119,6 @@ $(document).ready(function(){
 		$('#login, #register').on('click', function(e){//activates a button for logging out.
             e.preventDefault();
         	loadForm();
-
 		});
 	};
 	var checkLogin = function(){
@@ -129,10 +128,10 @@ $(document).ready(function(){
 			dataType: 'json',
 			success: function(response){
 				if(response.user){
-					console.log("in the check_login");
+					// console.log("in the check_login");
 					loadApp();// if the login response is correct it loads this page
 				}else{
-										console.log("in the check_login else"+response);
+										// console.log("in the check_login else"+response);
 
 					loadLanding();// if not returns the user to landing.
 				};
@@ -140,7 +139,7 @@ $(document).ready(function(){
 		});
 	};
 	function login(){// this is used when the button is submitted
-		console.log("login start");
+		// console.log("login start");
 		var username=$('#username').val();
 		var pass =$('#password').val();
 		$.ajax({
@@ -156,7 +155,7 @@ $(document).ready(function(){
 					showLoginError();
 				}else{
 					loadApp();
-					console.log("in the login");
+					// console.log("in the login");
 				};
 			}
 		});
@@ -180,35 +179,15 @@ $(document).ready(function(){
 					showLoginError();
 				}else{
 					loadApp();
-					console.log("in the login")
+					// console.log("in the reg")
 				};
 			}//end of object;
 		})
 	};
-	function newp(){
-		var name=$('#pname').val();
-		var due=$('#pdue').val();
-		var desc=$('#pdesc').val();
-		var start=$('#pstart').val();
-		$.ajax({
-			url:'xhr/new_project.php',
-			data:{
-				username:user,
-				password:pass,
-				email:email
-			},
-			type: 'post',
-			dataType: 'json',
-			success: function(response){
-				if(response.newproject){
 
-				};
-			}// end of object so no ;
-		})
-	};
 	<!-- ===================================== project function =================================== -->
 	function pget(){
-		console.log("pget call");
+		// console.log("pget call");
 		$.ajax({
 			url: 'xhr/get_projects.php',
 			data: {
@@ -220,7 +199,7 @@ $(document).ready(function(){
 				if(response.error){
 					// console.log( "in the if of pget"+response);
 				}else{
-					console.log("here is the thing- "+response.projects.id);
+					// console.log("here is the thing- "+response.projects.id);
 					loadProject(response.projects);
 					jload();
 				};
@@ -235,7 +214,7 @@ $(document).ready(function(){
 	// });
 
 	function taskGet(pid){
-		console.log("task call");
+		// console.log("task call");
 		$.ajax({
 			url: 'xhr/get_tasks.php',
 			data: {
@@ -245,15 +224,15 @@ $(document).ready(function(){
 			dataType: 'json',
 			success: function(response){
 				if(response.error){
-					console.log( "in the if of taskget"+response);
+					// console.log( "in the if of taskget"+response);
 				}else{
-					console.log("here is the taskget- "+response);
+					// console.log("here is the taskget- "+response);
 					$('#wrap').empty();
 			        $.get('templates/template.html',function(htmlArg){
 						var app = $(htmlArg).find('#task-template').html();
 						$.template('tasktemplate', app);
 						var html= $.render(response.tasks,'tasktemplate');
-						console.log("load tasktemp");
+						// console.log("load tasktemp");
 						$('#wrap').append(html);// adds the template to the html container
 			            //logout button
 			            $('#logout').on('click', function(e){//activates a button for logging out.
@@ -265,6 +244,12 @@ $(document).ready(function(){
 			            $('.ptasks').on('click',function(e){
 			            	loadApp();
 			            });
+						$('.task-new').on('click',function(e){
+							// console.log('click in edit');
+							newT(pid);
+							loadApp();
+						});
+
 			            jload();// loads the jquery ui scripts
 			            return false;
 			        });
@@ -275,7 +260,7 @@ $(document).ready(function(){
 	};
 	<!-- =================================== proj template loads ================== -->
 	function loadProject(prj){
-		console.log("load prj");
+		// console.log("load prj");
 		$('#shortscript-Cont, #longscript-Cont,#current,#edit-template').empty();
 		$.get('templates/template.html',function(htmlArg){
 			var shortprojct = $(htmlArg).find('#short-scriptTemp').html();
@@ -299,28 +284,57 @@ $(document).ready(function(){
 			var projcthtml = $.render(prj,'currenttemplate');
 			// console.log("hello load current");			
 			$('#current-select').append(projcthtml);
+			editTemp(prj);
+			$('.project').on('click', function(e){//activates a button for logging out.
+            	console.log('click '+prj);
+                $('#edit').empty();
+            	e.preventDefault();
+            	var current=$(this).attr('id');// p[asss this number into ajax to confimr what app the task belongs too.
+            								  // i will need to use .atr(id)
+            	$.get('templates/template.html',function(htmlArg){
+					var projct = $(htmlArg).find('#edit-click-template').html();
+					$.template('edittemplate', projct);
+					var projcthtml = $.render(current[0],'edittemplate');
+					console.log("projects? "+current[0]);
+					$('#edit').append(projcthtml);
+					jclass();
+					$('#project-new').on('click',function(e){
+						console.log('click in edit temp');
+						newp();
+						loadApp();
+					})
+				});
+            	console.log("pid"+prj);
+            });
 			$('.taskbtn').on('click', function(e){//activates a button for logging out.
-            	console.log('click');
+            	// console.log('click');
                 $('#wrap').empty();
             	e.preventDefault();
-            	var pid=$(this).attr('id');// p[asss this number into ajax to confimr what app the task belongs too.
+            	var prj=$(this).attr('id');// p[asss this number into ajax to confimr what app the task belongs too.
             								// i will need to use .atr(id)
             	loadTaskApp(pid);
-            	console.log("pid"+pid);
+            	// console.log("pid"+pid);
             });
-
             return false;
 			jclass();
-		});
-		$.get('templates/template.html',function(htmlArg){
-			var projct = $(htmlArg).find('#edit-template').html();
-			$.template('edittemplate', projct);
-			var projcthtml = $.render(prj[0],'edittemplate');
-			console.log("projects?"+prj[0].val);			
-			$('#edit').append(projcthtml);
-			jclass();
+			function editTemp(prj){
+				$.get('templates/template.html',function(htmlArg){
+					var projct = $(htmlArg).find('#edit-template').html();
+					$.template('edittemplate', projct);
+					var projcthtml = $.render(prj[0],'edittemplate');
+					// console.log("projects? "+prj[0]);
+					$('#edit').append(projcthtml);
+					jclass();
+					$('#project-new').on('click',function(e){
+						// console.log('click in edit temp');
+						newp();
+						loadApp();
+					})
+				});
+			};
 		});
 	};
+	
 	function loadForm(){
 		$.get('templates/template.html',function(htmlArg){
 				var entry = $(htmlArg).find('#entry-form').html();
@@ -328,7 +342,7 @@ $(document).ready(function(){
 				var html= $.render('','entrytemplate');
 				$('#view').append(html);
 				$('#submit_login').on('click', function(e) {
-				console.log("halp");
+				// console.log("halp");
                 e.preventDefault();
                 login();// logs into application and ensure login
             });
@@ -340,17 +354,133 @@ $(document).ready(function(){
 	};
 
 	function loadTasks(response){
-		console.log("task entry");
+		// console.log("task entry");
 		$('.last-task').empty();
 		$.get('templates/template.html',function(htmlArg){
 			var taskprjct = $(htmlArg).find('#task-edit-template').html();
 			$.template('tasktemp', taskprjct);
 			var taskhtml = $.render(response,'tasktemp');
-			console.log("hello load short");//if($('#last-task')!= ""){}		
+			// console.log("hello load short");//if($('#last-task')!= ""){}		
 
 			$('#last-task').append(taskhtml);
+
 			jclass();
 		});
+	};
+	/* ==============================   create delete tasks and projects ============= */
+	function newp(){
+		var name=$('#editAddproject-name').val();
+		var due=$('#editAddDue').val();
+		var desc=$('#editAddproject-description').val();
+		var start=$('#editAddStart').val();
+		var stat=$('#editAddproject-status').val;
+
+		$.ajax({
+			url:'xhr/new_project.php',
+			data:{
+				projectName:name,
+				status:stat,
+				dueDate:due,
+				projectDescription:desc,
+				startDate:start
+			},
+			type: 'post',
+			dataType: 'json',
+			success: function(response){
+				if(response.newproject){
+					// console.log('yayy')
+
+				}else{
+					// console.log('damnit'+response);
+				};
+			}// end of object so no ;
+		})
+	};
+		function editP(){
+		var name=$('#editAddproject-name').val();
+		var due=$('#editAddDue').val();
+		var desc=$('#editAddproject-description').val();
+		var start=$('#editAddStart').val();
+		var stat=$('#editAddproject-status').val;
+
+		$.ajax({
+			url:'xhr/new_project.php',
+			data:{
+				projectName:name,
+				status:stat,
+				dueDate:due,
+				projectDescription:desc,
+				startDate:start
+			},
+			type: 'post',
+			dataType: 'json',
+			success: function(response){
+				if(response.newproject){
+					console.log('edit p yayy')
+
+				}else{
+					console.log('edit p damnit'+response);
+				};
+			}// end of object so no ;
+		})
+	};
+	function newT(pid){
+		var name=$('#editAddtask-name').val();
+		var due=$('#taskDueDate').val();
+		var desc=$('#editAddtask-description').val();
+		var start=$('#taskStartDate').val();
+		var stat=$('#editAddtask-status').val;
+		var tPid=pid;
+		$.ajax({
+			url:'xhr/new_task.php',
+			data:{
+				projectID:pid,
+				taskName:name,
+				status:stat,
+				dueDate:due,
+				projectDescription:desc,
+				startDate:start
+			},
+			type: 'post',
+			dataType: 'json',
+			success: function(response){
+				if(response.newproject){
+					// console.log('yayy')
+
+				}else{
+					// console.log('damnit in task');
+				};
+			}// end of object so no ;
+		})
+	};
+	function editT(pid){
+		var name=$('#editAddtask-name').val();
+		var due=$('#taskDueDate').val();
+		var desc=$('#editAddtask-description').val();
+		var start=$('#taskStartDate').val();
+		var stat=$('#editAddtask-status').val;
+		var tPid=pid;
+		$.ajax({
+			url:'xhr/new_task.php',
+			data:{
+				projectID:pid,
+				taskName:name,
+				status:stat,
+				dueDate:due,
+				projectDescription:desc,
+				startDate:start
+			},
+			type: 'post',
+			dataType: 'json',
+			success: function(response){
+				if(response.newproject){
+					console.log('edit t yayy')
+
+				}else{
+					console.log('edit t damnit in task');
+				};
+			}// end of object so no ;
+		})
 	};
 	jload();
 	init();
