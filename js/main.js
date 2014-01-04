@@ -111,7 +111,7 @@ $(document).ready(function(){
         });
     };
     var loadTaskApp = function(pid){
-		// console.log("hello load app function");
+		console.log("hello load app function");
 		taskGet(pid);
     };
 	<!-- ===================================== login function =================================== -->
@@ -310,7 +310,7 @@ $(document).ready(function(){
             	// console.log('click');
                 $('#wrap').empty();
             	e.preventDefault();
-            	var prj=$(this).attr('id');// p[asss this number into ajax to confimr what app the task belongs too.
+            	var pid=$(this).attr('id');// p[asss this number into ajax to confimr what app the task belongs too.
             								// i will need to use .atr(id)
             	loadTaskApp(pid);
             	// console.log("pid"+pid);
