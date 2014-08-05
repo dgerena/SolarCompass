@@ -3,7 +3,7 @@
 $(document).ready(function(){
 	var init = function(){
  	    checkLogin();  //starts to see if login and password were entered, even if its cached.
- 	    console.log("hello init");
+ 	    // console.log("hello init");
     };
 	// console.log("runing out of reasons for this not to work"+' '+loadLanding());
 	function loadLanding(){
@@ -12,7 +12,7 @@ $(document).ready(function(){
 			var land = $(htmlArg).find('#landing-template').html();
 			$.template('landingtemplate', land);
 			var landhtml = $.render('','landingtemplate');
-			// console.log("hello load land");			
+			console.log("hello load land");			
 			$('#wrap').append(landhtml);// adds landing to html coantainer
 			jload();
 			entrybtns();
