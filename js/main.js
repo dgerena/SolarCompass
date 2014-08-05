@@ -121,6 +121,7 @@ $(document).ready(function(){
 		});
 	};
 	var checkLogin = function(){
+		console.log("checklog func");
 		$.ajax({
 			url:'xhr/check_login.php',
 			type: 'get',
