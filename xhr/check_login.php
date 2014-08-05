@@ -7,7 +7,7 @@ session_regenerate_id(false);
 
 require_once("reqs/common.php");
 require_once("reqs/pdo.php");
-//require_once("reqs/auth.php");
+require_once("reqs/auth.php");
 
 $dbh = new PDB();
 $db = $dbh->db;
