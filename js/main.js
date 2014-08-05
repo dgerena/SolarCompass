@@ -121,7 +121,7 @@ $(document).ready(function(){
 		});
 	};
 	var checkLogin = function(){
-		console.log("checklog func");
+		// console.log("checklog func");
 		$.ajax({
 			url:'xhr/check_login.php',
 			type: 'get',
@@ -131,8 +131,7 @@ $(document).ready(function(){
 					console.log("in the check_login");
 					loadApp();// if the login response is correct it loads this page
 				}else{
-										// console.log("in the check_login else"+response);
-
+					console.log("in the check_login else"+response);
 					loadLanding();// if not returns the user to landing.
 				};
 			}//end of object;
