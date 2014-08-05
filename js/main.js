@@ -7,6 +7,7 @@ $(document).ready(function(){
     };
 	// console.log("runing out of reasons for this not to work"+' '+loadLanding());
 	function loadLanding(){
+		console.log("loadland func");
 		$('#wrap').empty();
 		$.get('templates/template.html',function(htmlArg){
 			var land = $(htmlArg).find('#landing-template').html();
@@ -133,7 +134,7 @@ $(document).ready(function(){
 				}else{
 					console.log("in the check_login else"+response);
 					loadLanding();// if not returns the user to landing.
-				};
+				}
 			}//end of object;
 		});
 	};
