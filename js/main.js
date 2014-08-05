@@ -2,8 +2,8 @@
 
 $(document).ready(function(){
 	var init = function(){
- 	        checkLogin();  //starts to see if login and password were entered, even if its cached.
- 	        // console.log("hello init");
+ 	    checkLogin();  //starts to see if login and password were entered, even if its cached.
+ 	    console.log("hello init");
     };
 	// console.log("runing out of reasons for this not to work"+' '+loadLanding());
 	function loadLanding(){
