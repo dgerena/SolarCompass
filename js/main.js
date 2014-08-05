@@ -16,7 +16,6 @@ $(document).ready(function(){
 			$('#wrap').append(landhtml);// adds landing to html coantainer
 			jload();
 			entrybtns();
-			
 		});
 	};
 <!-- ===================================== jquery functions =================================== -->
@@ -128,7 +127,7 @@ $(document).ready(function(){
 			dataType: 'json',
 			success: function(response){
 				if(response.user){
-					// console.log("in the check_login");
+					console.log("in the check_login");
 					loadApp();// if the login response is correct it loads this page
 				}else{
 										// console.log("in the check_login else"+response);
