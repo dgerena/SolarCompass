@@ -127,6 +127,10 @@ $(document).ready(function(){
 			url:'xhr/check_login.php',
 			type: 'get',
 			dataType: 'json',
+			error: function(xhr, status, error) {
+			  var err = eval("(" + xhr.responseText + ")");
+			  alert(err.Message);
+			},
 			success: function(response){
 				if(response.user){
 					console.log("in the check_login");
